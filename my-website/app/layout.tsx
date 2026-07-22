@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
 import CommandPalette from "@/components/CommandPalette";
 import NewPostModal from "@/components/NewPostModal";
+import NewProjectModal from "@/components/NewProjectModal";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -44,6 +45,7 @@ export default function RootLayout({
           <Footer />
           <CommandPalette />
           <NewPostModal />
+          <NewProjectModal />
         </ThemeProvider>
       </body>
     </html>

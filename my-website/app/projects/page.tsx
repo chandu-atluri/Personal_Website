@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ProjectCard from "@/components/ProjectCard";
+import NewProjectButton from "@/components/NewProjectButton";
 import { getAllProjects } from "@/lib/projects";
 
 export const dynamic = "force-dynamic";
@@ -20,13 +21,18 @@ export default async function ProjectsPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-6 py-16 sm:py-24">
-      <p className="font-mono text-sm text-cyber">$ ls projects/</p>
-      <h1 className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-        Projects
-      </h1>
-      <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">
-        Things I&apos;m building outside of work — this list will grow over time.
-      </p>
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <p className="font-mono text-sm text-cyber">$ ls projects/</p>
+          <h1 className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+            Projects
+          </h1>
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">
+            Things I&apos;m building outside of work — this list will grow over time.
+          </p>
+        </div>
+        <NewProjectButton />
+      </div>
 
       {loadError ? (
         <p className="mt-12 text-sm text-red-500">
@@ -34,7 +40,7 @@ export default async function ProjectsPage() {
         </p>
       ) : projects.length === 0 ? (
         <p className="mt-12 text-sm text-muted">
-          Nothing here yet — first project coming soon.
+          Nothing here yet — click New project to add the first one.
         </p>
       ) : (
         <div className="mt-12 grid gap-5 sm:grid-cols-2">

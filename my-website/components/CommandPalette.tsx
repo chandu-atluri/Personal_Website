@@ -44,6 +44,12 @@ export default function CommandPalette() {
         run: () => window.dispatchEvent(new Event("open-new-post-modal")),
       },
       {
+        id: "new-project",
+        label: "New project",
+        hint: "$ new-project",
+        run: () => window.dispatchEvent(new Event("open-new-project-modal")),
+      },
+      {
         id: "theme",
         label: `Switch to ${resolvedTheme === "dark" ? "light" : "dark"} mode`,
         run: () => setTheme(resolvedTheme === "dark" ? "light" : "dark"),
