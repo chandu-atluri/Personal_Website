@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# This root .gitignore is a generic Python template and its "lib/" rule
+# (line 17) was silently excluding the Next.js app's my-website/lib/
+# source directory. Un-ignore it explicitly.
+!/my-website/lib/
+!/my-website/lib/**
