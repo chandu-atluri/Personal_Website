@@ -6,14 +6,19 @@ export type Project = {
   title: string;
   description: string;
   tags: string[];
-  metric: { value: string; label: string };
+  metric: {
+    value: string;
+    label: string;
+  };
   featured: boolean;
 };
 
 export async function getAllProjects(): Promise<Project[]> {
   const { data, error } = await getSupabase()
     .from("projects")
-    .select("slug, title, description, tags, metric_value, metric_label, featured")
+    .select(
+      "slug, title, description, tags, metric_value, metric_label, featured"
+    )
     .order("sort_order", { ascending: true });
 
   if (error) throw new Error(error.message);
@@ -23,7 +28,10 @@ export async function getAllProjects(): Promise<Project[]> {
     title: row.title,
     description: row.description,
     tags: row.tags,
-    metric: { value: row.metric_value, label: row.metric_label },
+    metric: {
+      value: row.metric_value,
+      label: row.metric_label,
+    },
     featured: row.featured,
   }));
 }
@@ -37,11 +45,17 @@ export async function createProject(input: {
   featured: boolean;
 }): Promise<Project> {
   const supabase = getSupabase();
-  const slug = await uniqueSlug(supabase, "projects", input.title);
+
+  const slug = await uniqueSlug(
+    supabase,
+    "projects",
+    input.title
+  );
 
   const { count } = await supabase
     .from("projects")
     .select("*", { count: "exact", head: true });
+
   const sortOrder = count ?? 0;
 
   const title = input.title.trim();
@@ -67,7 +81,10 @@ export async function createProject(input: {
     title,
     description,
     tags: input.tags,
-    metric: { value: metricValue, label: metricLabel },
+    metric: {
+      value: metricValue,
+      label: metricLabel,
+    },
     featured: input.featured,
   };
 }
